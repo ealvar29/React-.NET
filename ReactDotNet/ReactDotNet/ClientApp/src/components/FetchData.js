@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as moment from 'moment';
 
 export class FetchData extends Component {
   static displayName = FetchData.name;
@@ -9,7 +10,10 @@ export class FetchData extends Component {
   }
 
   componentDidMount() {
-    this.populateWeatherData();
+      this.populateWeatherData();
+      let dates = new moment();
+      console.log(dates);
+      console.log(this.props);
   }
 
   static renderForecastsTable(forecasts) {
@@ -26,7 +30,7 @@ export class FetchData extends Component {
         <tbody>
           {forecasts.map(forecast =>
             <tr key={forecast.date}>
-              <td>{forecast.date}</td>
+              <td>{moment(forecast.date).format('MM/DD/YYYY')}</td>
               <td>{forecast.temperatureC}</td>
               <td>{forecast.temperatureF}</td>
               <td>{forecast.summary}</td>
